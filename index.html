@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>InfluencyHub - Conectando Marcas e Influenciadores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO básico -->
+    <meta name="description" content="Plataforma de intermediação entre empresas, influenciadores e agências.">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HERO / LANDING PAGE -->
+<header class="hero">
+    <h1>Conecte sua marca aos influenciadores certos</h1>
+    <p>Encontre criadores de conteúdo ideais para campanhas de alto impacto.</p>
+
+    <div class="cta-buttons">
+        <button onclick="mostrarSecao('empresa')">Sou Empresa</button>
+        <button onclick="mostrarSecao('influenciador')">Sou Influenciador</button>
+        <button onclick="mostrarSecao('agencia')">Sou Agência</button>
+    </div>
+</header>
+
+<!-- BENEFÍCIOS -->
+<section class="beneficios">
+    <div class="card">
+        <h3>Para Empresas</h3>
+        <p>Campanhas segmentadas, métricas reais e criadores qualificados.</p>
+    </div>
+    <div class="card">
+        <h3>Para Influenciadores</h3>
+        <p>Conecte-se com marcas e monetize sua audiência.</p>
+    </div>
+    <div class="card">
+        <h3>Para Agências</h3>
+        <p>Gerencie campanhas, talentos e relatórios em um só lugar.</p>
+    </div>
+</section>
+
+<!-- ESPAÇO ADSENSE -->
+<section class="ads">
+    <!-- Google AdSense - inserir código aqui futuramente -->
+    <div class="ad-placeholder">Espaço para Anúncio Google AdSense</div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos">
+    <h2>Casos de Sucesso</h2>
+    <p>"Aumentamos nossas vendas em 300% com campanhas certeiras."</p>
+    <span>— Empresa Parceira</span>
+</section>
+
+<!-- CADASTRO EMPRESA -->
+<section id="empresa" class="form-section hidden">
+    <h2>Cadastro de Empresa</h2>
+    <form id="formEmpresa">
+        <input type="text" placeholder="Nome da Empresa" required>
+        <input type="text" placeholder="CNPJ" required>
+        <input type="email" placeholder="E-mail" required>
+        <input type="tel" placeholder="Telefone" required>
+        <input type="text" placeholder="Segmento" required>
+        <input type="number" placeholder="Budget (R$)" required>
+        <textarea placeholder="Objetivos da Campanha"></textarea>
+        <button type="submit">Cadastrar Empresa</button>
+    </form>
+</section>
+
+<!-- CADASTRO INFLUENCIADOR -->
+<section id="influenciador" class="form-section hidden">
+    <h2>Cadastro de Influenciador</h2>
+    <form id="formInfluencer">
+        <input type="text" placeholder="Nome" required>
+        <input type="email" placeholder="E-mail" required>
+        <input type="tel" placeholder="Telefone" required>
+        <input type="text" placeholder="Instagram / TikTok / YouTube" required>
+        <input type="text" placeholder="Nicho / Categoria" required>
+        <input type="file" disabled>
+        <small>Upload de mídia kit (simulado)</small>
+        <button type="submit">Cadastrar Influenciador</button>
+    </form>
+</section>
+
+<!-- BUSCA / MATCHING -->
+<section class="busca">
+    <h2>Buscar Influenciadores</h2>
+    <input type="text" id="filtroNicho" placeholder="Filtrar por nicho">
+    <button onclick="buscarInfluencers()">Buscar</button>
+
+    <div id="resultado" class="cards"></div>
+</section>
+
+<!-- ESPAÇO ADSENSE -->
+<section class="ads">
+    <div class="ad-placeholder">Banner Publicitário</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 InfluencyHub • Todos os direitos reservados</p>
+</footer>
+
+<!-- JS -->
+<script src="script.js"></script>
+</body>
+</html>
