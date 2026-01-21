@@ -2,108 +2,312 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>InfluencyHub - Conectando Marcas e Influenciadores</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- SEO básico -->
-    <meta name="description" content="Plataforma de intermediação entre empresas, influenciadores e agências.">
-
-    <!-- CSS -->
+    <title>InfluencyHub - Conectando Marcas e Influenciadores</title>
+    <meta name="description" content="Plataforma de intermediação entre empresas e influenciadores digitais com sistema de orçamento inteligente, score de relevância e pagamento seguro.">
+    <meta name="keywords" content="influenciadores, marketing digital, campanhas, intermediação, empresas, influencer marketing">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://influencyhub.netlify.app/">
+    <meta property="og:title" content="InfluencyHub - Conectando Marcas e Influenciadores">
+    <meta property="og:description" content="Plataforma de intermediação entre empresas e influenciadores digitais.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://influencyhub.netlify.app/">
+    <meta property="twitter:title" content="InfluencyHub - Conectando Marcas e Influenciadores">
+    <meta property="twitter:description" content="Plataforma de intermediação entre empresas e influenciadores digitais.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%238b5cf6'/%3E%3Cstop offset='100%25' style='stop-color:%23f97316'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='70' font-size='70' font-weight='bold' text-anchor='middle' fill='url(%23g)'%3EI%3C/text%3E%3C/svg%3E">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header com Logo e Navegação -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#8b5cf6"/>
+                            <stop offset="100%" style="stop-color:#f97316"/>
+                        </linearGradient>
+                    </defs>
+                    <text x="10" y="45" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="url(#logoGradient)">InfluencyHub</text>
+                </svg>
+            </div>
+            <nav class="nav">
+                <a href="#home" class="nav-link">Início</a>
+                <a href="#beneficios" class="nav-link">Benefícios</a>
+                <a href="#como-funciona" class="nav-link">Como Funciona</a>
+                <a href="#cadastro" class="nav-link">Cadastrar</a>
+            </nav>
+        </div>
+    </header>
 
-<!-- HERO / LANDING PAGE -->
-<header class="hero">
-    <h1>Conecte sua marca aos influenciadores certos</h1>
-    <p>Encontre criadores de conteúdo ideais para campanhas de alto impacto.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 class="hero-title">Conecte sua marca aos influenciadores certos</h1>
+            <p class="hero-subtitle">Encontre criadores de conteúdo ideais para campanhas de alto impacto com sistema de orçamento inteligente e pagamento seguro.</p>
+            <div class="cta-buttons">
+                <button onclick="mostrarSecao('empresa')" class="btn btn-primary">Sou Empresa</button>
+                <button onclick="mostrarSecao('influenciador')" class="btn btn-secondary">Sou Influenciador</button>
+                <button onclick="mostrarSecao('agencia')" class="btn btn-tertiary">Sou Agência</button>
+            </div>
+        </div>
+    </section>
 
-    <div class="cta-buttons">
-        <button onclick="mostrarSecao('empresa')">Sou Empresa</button>
-        <button onclick="mostrarSecao('influenciador')">Sou Influenciador</button>
-        <button onclick="mostrarSecao('agencia')">Sou Agência</button>
-    </div>
-</header>
+    <!-- Benefícios -->
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Por que escolher o InfluencyHub?</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Matching Inteligente</h3>
+                    <p>Algoritmo que conecta empresas aos influenciadores mais adequados para cada campanha.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>Orçamento Automático</h3>
+                    <p>Calculadora que estima valores baseada em seguidores, nicho e formato de conteúdo.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⭐</div>
+                    <h3>Score de Relevância</h3>
+                    <p>Sistema de pontuação (0-100) que avalia frequência, crescimento e qualidade do conteúdo.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Pagamento Seguro</h3>
+                    <p>Intermediação com escrow: pagamento retido até entrega aprovada pela empresa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- BENEFÍCIOS -->
-<section class="beneficios">
-    <div class="card">
-        <h3>Para Empresas</h3>
-        <p>Campanhas segmentadas, métricas reais e criadores qualificados.</p>
-    </div>
-    <div class="card">
-        <h3>Para Influenciadores</h3>
-        <p>Conecte-se com marcas e monetize sua audiência.</p>
-    </div>
-    <div class="card">
-        <h3>Para Agências</h3>
-        <p>Gerencie campanhas, talentos e relatórios em um só lugar.</p>
-    </div>
-</section>
+    <!-- Como Funciona -->
+    <section id="como-funciona" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Como Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Cadastro</h3>
+                    <p>Empresas e influenciadores criam seus perfis com informações relevantes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Matching</h3>
+                    <p>Sistema sugere os melhores influenciadores para cada campanha.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Proposta</h3>
+                    <p>Empresa envia proposta com formato, frequência e orçamento.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Contrato</h3>
+                    <p>Ambos aceitam termo simples com checkbox de concordância.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Pagamento</h3>
+                    <p>Empresa deposita via Mercado Pago (valor fica retido).</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">6</div>
+                    <h3>Entrega</h3>
+                    <p>Influencer cria e entrega o conteúdo conforme acordado.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">7</div>
+                    <h3>Aprovação</h3>
+                    <p>Empresa aprova e pagamento é liberado (80% influencer + 20% plataforma).</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- ESPAÇO ADSENSE -->
-<section class="ads">
-    <!-- Google AdSense - inserir código aqui futuramente -->
-    <div class="ad-placeholder">Espaço para Anúncio Google AdSense</div>
-</section>
+    <!-- Seção de Cadastro -->
+    <section id="cadastro" class="register">
+        <div class="container">
+            <h2 class="section-title">Cadastre-se Agora</h2>
+            
+            <!-- Cadastro Empresa -->
+            <div id="form-empresa" class="form-container" style="display:none;">
+                <h3>Cadastro de Empresa</h3>
+                <form id="formEmpresa" class="form">
+                    <input type="text" name="nomeEmpresa" placeholder="Nome da Empresa" required>
+                    <input type="email" name="emailEmpresa" placeholder="Email corporativo" required>
+                    <input type="tel" name="telefoneEmpresa" placeholder="Telefone" required>
+                    <input type="text" name="segmentoEmpresa" placeholder="Segmento/Nicho" required>
+                    <input type="url" name="siteEmpresa" placeholder="Website (opcional)">
+                    <textarea name="objetivosEmpresa" placeholder="Objetivos de marketing" rows="3" required></textarea>
+                    <input type="number" name="orcamentoMensal" placeholder="Orçamento mensal (R$)" min="0" step="100">
+                    <button type="submit" class="btn btn-primary">Cadastrar Empresa</button>
+                </form>
+            </div>
 
-<!-- DEPOIMENTOS -->
-<section class="depoimentos">
-    <h2>Casos de Sucesso</h2>
-    <p>"Aumentamos nossas vendas em 300% com campanhas certeiras."</p>
-    <span>— Empresa Parceira</span>
-</section>
+            <!-- Cadastro Influenciador -->
+            <div id="form-influenciador" class="form-container" style="display:none;">
+                <h3>Cadastro de Influenciador</h3>
+                <form id="formInfluenciador" class="form">
+                    <input type="text" name="nomeInfluencer" placeholder="Nome completo" required>
+                    <input type="email" name="emailInfluencer" placeholder="Email" required>
+                    <input type="tel" name="telefoneInfluencer" placeholder="Telefone" required>
+                    <input type="url" name="instagramInfluencer" placeholder="Instagram (@seuusuario)" required>
+                    <input type="number" name="seguidores" placeholder="Número de seguidores" min="1000" required>
+                    <input type="text" name="nichoInfluencer" placeholder="Nicho principal (ex: Moda, Tech, Saúde)" required>
+                    <input type="number" name="frequenciaPostagem" placeholder="Posts por semana" min="1" max="50" required>
+                    <select name="formatoPreferido" required>
+                        <option value="">Formato preferido</option>
+                        <option value="feed">Post Feed</option>
+                        <option value="stories">Stories</option>
+                        <option value="reels">Reels</option>
+                        <option value="todos">Todos os formatos</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Cadastrar Influenciador</button>
+                </form>
+            </div>
 
-<!-- CADASTRO EMPRESA -->
-<section id="empresa" class="form-section hidden">
-    <h2>Cadastro de Empresa</h2>
-    <form id="formEmpresa">
-        <input type="text" placeholder="Nome da Empresa" required>
-        <input type="text" placeholder="CNPJ" required>
-        <input type="email" placeholder="E-mail" required>
-        <input type="tel" placeholder="Telefone" required>
-        <input type="text" placeholder="Segmento" required>
-        <input type="number" placeholder="Budget (R$)" required>
-        <textarea placeholder="Objetivos da Campanha"></textarea>
-        <button type="submit">Cadastrar Empresa</button>
-    </form>
-</section>
+            <!-- Cadastro Agência -->
+            <div id="form-agencia" class="form-container" style="display:none;">
+                <h3>Cadastro de Agência</h3>
+                <form id="formAgencia" class="form">
+                    <input type="text" name="nomeAgencia" placeholder="Nome da Agência" required>
+                    <input type="email" name="emailAgencia" placeholder="Email corporativo" required>
+                    <input type="tel" name="telefoneAgencia" placeholder="Telefone" required>
+                    <input type="number" name="numClientes" placeholder="Número de clientes ativos" min="1">
+                    <input type="text" name="especialidadeAgencia" placeholder="Especialidade" required>
+                    <textarea name="servicosAgencia" placeholder="Serviços oferecidos" rows="3" required></textarea>
+                    <button type="submit" class="btn btn-primary">Cadastrar Agência</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-<!-- CADASTRO INFLUENCIADOR -->
-<section id="influenciador" class="form-section hidden">
-    <h2>Cadastro de Influenciador</h2>
-    <form id="formInfluencer">
-        <input type="text" placeholder="Nome" required>
-        <input type="email" placeholder="E-mail" required>
-        <input type="tel" placeholder="Telefone" required>
-        <input type="text" placeholder="Instagram / TikTok / YouTube" required>
-        <input type="text" placeholder="Nicho / Categoria" required>
-        <input type="file" disabled>
-        <small>Upload de mídia kit (simulado)</small>
-        <button type="submit">Cadastrar Influenciador</button>
-    </form>
-</section>
+    <!-- Calculadora de Orçamento -->
+    <section id="orcamento" class="calculator">
+        <div class="container">
+            <h2 class="section-title">Calculadora de Orçamento Inteligente</h2>
+            <div class="calculator-box">
+                <div class="calculator-inputs">
+                    <label>
+                        Número de Seguidores:
+                        <input type="number" id="calcSeguidores" placeholder="Ex: 50000" min="1000">
+                    </label>
+                    <label>
+                        Nicho:
+                        <select id="calcNicho">
+                            <option value="">Selecione o nicho</option>
+                            <option value="saude">Saúde e Bem-estar</option>
+                            <option value="financas">Finanças e Investimentos</option>
+                            <option value="tech">Tecnologia</option>
+                            <option value="moda">Moda e Beleza</option>
+                            <option value="viagem">Viagem e Turismo</option>
+                            <option value="fitness">Fitness e Esportes</option>
+                            <option value="comida">Comida e Gastronomia</option>
+                            <option value="lifestyle">Lifestyle</option>
+                        </select>
+                    </label>
+                    <label>
+                        Formato:
+                        <select id="calcFormato">
+                            <option value="">Selecione o formato</option>
+                            <option value="stories">Stories (1 dia)</option>
+                            <option value="stories3">Stories (3 dias)</option>
+                            <option value="stories7">Stories (7 dias)</option>
+                            <option value="feed">Post Feed (1x)</option>
+                            <option value="feed3">Post Feed (3x)</option>
+                            <option value="reels">Reels (1x)</option>
+                            <option value="reels3">Reels (3x)</option>
+                            <option value="combo">Combo (Feed + Stories + Reels)</option>
+                        </select>
+                    </label>
+                    <label>
+                        Objetivo:
+                        <select id="calcObjetivo">
+                            <option value="">Selecione o objetivo</option>
+                            <option value="branding">Branding</option>
+                            <option value="vendas">Vendas Diretas</option>
+                            <option value="trafego">Tráfego</option>
+                            <option value="engajamento">Engajamento</option>
+                        </select>
+                    </label>
+                    <button onclick="calcularOrcamento()" class="btn btn-primary">Calcular Orçamento</button>
+                </div>
+                <div id="resultadoOrcamento" class="calculator-result" style="display:none;">
+                    <h3>Estimativa de Orçamento</h3>
+                    <div class="price-range">
+                        <div class="price-item">
+                            <span class="price-label">Mínimo</span>
+                            <span id="precoMinimo" class="price-value">R$ 0</span>
+                        </div>
+                        <div class="price-item featured">
+                            <span class="price-label">Médio</span>
+                            <span id="precoMedio" class="price-value">R$ 0</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="price-label">Premium</span>
+                            <span id="precoPremium" class="price-value">R$ 0</span>
+                        </div>
+                    </div>
+                    <p class="price-note">* Valores estimados baseados em seguidores, nicho e formato. Preço final pode variar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- BUSCA / MATCHING -->
-<section class="busca">
-    <h2>Buscar Influenciadores</h2>
-    <input type="text" id="filtroNicho" placeholder="Filtrar por nicho">
-    <button onclick="buscarInfluencers()">Buscar</button>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>InfluencyHub</h4>
+                    <p>Plataforma de intermediação entre empresas e influenciadores digitais.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#como-funciona">Como Funciona</a></li>
+                        <li><a href="#cadastro">Cadastrar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>Email: contato@influencyhub.com</p>
+                    <p>Suporte: suporte@influencyhub.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 InfluencyHub. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
-    <div id="resultado" class="cards"></div>
-</section>
-
-<!-- ESPAÇO ADSENSE -->
-<section class="ads">
-    <div class="ad-placeholder">Banner Publicitário</div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <p>© 2026 InfluencyHub • Todos os direitos reservados</p>
-</footer>
-
-<!-- JS -->
-<script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        // Inicializar EmailJS
+        (function() {
+            emailjs.init('EGF_hBVqUpyXpum6G');
+        })();
+    </script>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    <script>
+        // Configurar Mercado Pago
+        const mp = new MercadoPago('TEST-e338611bb-162b-4285-9e05-5aa3ce92a0ca', {
+            locale: 'pt-BR'
+        });
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
