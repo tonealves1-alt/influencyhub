@@ -1,0 +1,133 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* CORES */
+:root {
+    --roxo: #6a11cb;
+    --laranja: #ff7a18;
+    --gradiente: linear-gradient(135deg, #6a11cb, #ff7a18);
+}
+
+/* HERO */
+.hero {
+    background: var(--gradiente);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.cta-buttons button {
+    margin: 10px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.cta-buttons button:hover {
+    transform: scale(1.05);
+}
+
+/* BENEFÍCIOS */
+.beneficios {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    width: 280px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* FORMULÁRIOS */
+.form-section {
+    padding: 40px 20px;
+}
+
+.form-section form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section input,
+.form-section textarea,
+.form-section button {
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.form-section button {
+    background: var(--gradiente);
+    color: white;
+    border: none;
+}
+
+/* BUSCA */
+.busca {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cards .card {
+    width: 250px;
+}
+
+/* ADS */
+.ads {
+    padding: 30px;
+    text-align: center;
+}
+
+.ad-placeholder {
+    background: #eee;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+    background: #111;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* UTIL */
+.hidden {
+    display: none;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .beneficios {
+        flex-direction: column;
+    }
+}
