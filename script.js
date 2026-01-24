@@ -1,307 +1,178 @@
-// ========== CONFIGURAÇÕES EMAILJS ==========
-const EMAILJS_PUBLIC_KEY = 'EGF_hBVqUpyXpum6G';
-const EMAILJS_SERVICE_ID = 'service_27r93m1';
-const EMAILJS_TEMPLATE_EMPRESA = 'template_qacl1zh';
+// ======== CONFIGURAÇÕES EMAILJS ========
+const EMAILJS_PUBLIC_KEY   = 'EGF_hBVqUpyXpum6G';
+const EMAILJS_SERVICE_ID   = 'service_27r93m1';
+const EMAILJS_TEMPLATE_EMPRESA    = 'template_qacl1zh';
 const EMAILJS_TEMPLATE_INFLUENCER = 'template_cqql81u';
 
-// ========== INICIALIZAÇÃO ==========
-emailjs.init(EMAILJS_PUBLIC_KEY);
-
-// ========== MOSTRAR SEÇÕES ==========
-function mostrarSecao(id) {
-    document.querySelectorAll('.form-section').forEach(sec => {
-        sec.classList.add('hidden');
-    });
-    document.getElementById(id).classList.remove('hidden');
+// Inicializar EmailJS
+if (typeof emailjs !== 'undefined') {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
 }
 
-// ========== CADASTRO DE EMPRESAS ==========
-document.getElementById('formEmpresa')?.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = {
-        tipo: 'Empresa',
-        nome: document.getElementById('nomeEmpresa').value,
-        email: document.getElementById('emailEmpresa').value,
-        telefone: document.getElementById('telefoneEmpresa').value,
-        setor: document.getElementById('setorEmpresa').value
-    };
-    
-    // Enviar email via EmailJS
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_EMPRESA, formData)
-        .then(function() {
-            alert('✅ Empresa cadastrada com sucesso! Você receberá um email de confirmação.');
-            document.getElementById('formEmpresa').reset();
-        }, function(error) {
-            alert('❌ Erro ao cadastrar. Tente novamente.');
-            console.error('Erro EmailJS:', error);
-        });
-});
+// ======== MOSTRAR FORMULÁRIOS ========
+// Recebe "empresa", "influenciador" ou "agencia" e exibe o formulário correspondente.
+function mostrarSecao(tipo) {
+  const ids = ['form-empresa', 'form-influenciador', 'form-agencia'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+  const target = document.getElementById('form-' + tipo);
+  if (target) target.style.display = 'block';
+}
 
-// ========== CADASTRO DE INFLUENCERS ==========
-document.getElementById('formInfluencer')?.addEventListener('submit', function(e) {
+// ======== CADASTRO DE EMPRESAS ========
+const formEmpresa = document.getElementById('formEmpresa');
+if (formEmpresa) {
+  formEmpresa.addEventListener('submit', function (e) {
     e.preventDefault();
-    
-    const formData = {
-        tipo: 'Influencer',
-        nome: document.getElementById('nomeInfluencer').value,
-        email: document.getElementById('emailInfluencer').value,
-        telefone: document.getElementById('telefoneInfluencer').value,
-        redes: document.getElementById('redesInfluencer').value,
-        nicho: document.getElementById('nichoInfluencer').value,
-        seguidores: document.getElementById('seguidoresInfluencer').value
+    const data = {
+      nomeEmpresa: document.getElementById('nomeEmpresa').value.trim(),
+      emailEmpresa: document.getElementById('emailEmpresa').value.trim(),
+      telefoneEmpresa: document.getElementById('telefoneEmpresa').value.trim(),
+      segmentoEmpresa: document.getElementById('segmentoEmpresa').value.trim(),
+      siteEmpresa: document.getElementById('siteEmpresa').value.trim(),
+      objetivosEmpresa: document.getElementById('objetivosEmpresa').value.trim(),
+      orcamentoMensal: document.getElementById('orcamentoMensal').value.trim()
     };
-    
+    // Enviar via EmailJS
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_EMPRESA, data)
+      .then(() => {
+        alert('✅ Empresa cadastrada com sucesso! Você receberá um email de confirmação.');
+        formEmpresa.reset();
+      })
+      .catch((err) => {
+        console.error('Erro EmailJS (empresa):', err);
+        alert('❌ Erro ao cadastrar empresa. Tente novamente.');
+      });
+  });
+}
+
+// ======== CADASTRO DE INFLUENCIADORES ========
+const formInfluencer = document.getElementById('formInfluenciador');
+if (formInfluencer) {
+  formInfluencer.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const seguidores = Number(document.getElementById('seguidoresInfluencer').value || 0);
+    const nicho      = document.getElementById('nichoInfluencer').value.trim();
+    const data = {
+      nomeInfluencer: document.getElementById('nomeInfluencer').value.trim(),
+      emailInfluencer: document.getElementById('emailInfluencer').value.trim(),
+      telefoneInfluencer: document.getElementById('telefoneInfluencer').value.trim(),
+      instagramInfluencer: document.getElementById('instagramInfluencer').value.trim(),
+      seguidoresInfluencer: seguidores,
+      nichoInfluencer: nicho,
+      frequenciaPostagem: document.getElementById('frequenciaPostagem').value.trim(),
+      formatoPreferido: document.getElementById('formatoPreferido').value.trim()
+    };
     // Calcular score de relevância
-    const score = calcularScore(formData.seguidores, formData.nicho);
-    formData.score = score;
-    
-    // Enviar email via EmailJS
-    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INFLUENCER, formData)
-        .then(function() {
-            alert(`✅ Influencer cadastrado com sucesso!\nSeu Score de Relevância: ${score}/100\nVocê receberá um email de confirmação.`);
-            document.getElementById('formInfluencer').reset();
-        }, function(error) {
-            alert('❌ Erro ao cadastrar. Tente novamente.');
-            console.error('Erro EmailJS:', error);
-        });
-});
-
-// ========== CÁLCULO DE SCORE DE RELEVÂNCIA ==========
-function calcularScore(seguidores, nicho) {
-    let score = 0;
-    
-    // Baseado em seguidores (0-40 pontos)
-    const numSeguidores = parseInt(seguidores.replace(/[^0-9]/g, ''));
-    if (numSeguidores < 10000) score += 10;
-    else if (numSeguidores < 50000) score += 20;
-    else if (numSeguidores < 100000) score += 30;
-    else score += 40;
-    
-    // Baseado em nicho (0-30 pontos)
-    const nichosAltos = ['moda', 'beleza', 'fitness', 'tecnologia', 'gastronomia'];
-    if (nichosAltos.some(n => nicho.toLowerCase().includes(n))) {
-        score += 30;
-    } else {
-        score += 20;
-    }
-    
-    // Pontos de crescimento potencial (0-30 pontos)
-    score += Math.floor(Math.random() * 30) + 1;
-    
-    return Math.min(score, 100);
+    const score = calcularScore(seguidores, nicho);
+    data.score = score;
+    // Enviar via EmailJS
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INFLUENCER, data)
+      .then(() => {
+        alert(`✅ Influenciador cadastrado com sucesso!\nSeu Score de Relevância: ${score}/100\nVocê receberá um email de confirmação.`);
+        formInfluencer.reset();
+      })
+      .catch((err) => {
+        console.error('Erro EmailJS (influencer):', err);
+        alert('❌ Erro ao cadastrar influenciador. Tente novamente.');
+      });
+  });
 }
 
-// ========== ORÇAMENTO INTELIGENTE ==========
-function calcularOrcamento() {
-    const objetivo = document.getElementById('objetivoCampanha')?.value;
-    const orcamento = parseFloat(document.getElementById('orcamentoCampanha')?.value || 0);
-    const tipoAcao = document.getElementById('tipoAcao')?.value;
-    
-    if (!objetivo || !orcamento || !tipoAcao) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-    }
-    
-    // Cálculo baseado em tipo de ação
-    let multiplicador = 1;
-    switch(tipoAcao) {
-        case 'post-feed': multiplicador = 1.5; break;
-        case 'stories': multiplicador = 1.0; break;
-        case 'reels': multiplicador = 2.0; break;
-        case 'collab': multiplicador = 2.5; break;
-    }
-    
-    const valorSugerido = orcamento * multiplicador;
-    const taxaPlataforma = valorSugerido * 0.20; // 20% da plataforma
-    const valorFinal = valorSugerido + taxaPlataforma;
-    
-    document.getElementById('resultadoOrcamento').innerHTML = `
-        <div class="orcamento-resultado">
-            <h3>💰 Orçamento Calculado</h3>
-            <p><strong>Tipo de Ação:</strong> ${tipoAcao}</p>
-            <p><strong>Valor Base:</strong> R$ ${orcamento.toFixed(2)}</p>
-            <p><strong>Valor Sugerido:</strong> R$ ${valorSugerido.toFixed(2)}</p>
-            <p><strong>Taxa da Plataforma (20%):</strong> R$ ${taxaPlataforma.toFixed(2)}</p>
-            <h4>Total: R$ ${valorFinal.toFixed(2)}</h4>
-            <button onclick="iniciarPagamento(${valorFinal})">Prosseguir com Pagamento</button>
-        </div>
-    `;
-}
-
-// ========== SISTEMA DE INTERMEDIAÇÃO SEGURA ==========
-let acordoAtual = null;
-
-function criarAcordo(empresaId, influencerId, valor) {
-    acordoAtual = {
-        id: Date.now(),
-        empresaId,
-        influencerId,
-        valor,
-        status: 'pendente',
-        aceiteEmpresa: false,
-        aceiteInfluencer: false
+// ======== CADASTRO DE AGÊNCIAS ========
+const formAgencia = document.getElementById('formAgencia');
+if (formAgencia) {
+  formAgencia.addEventListener('submit', function (e) {
+    e.preventDefault();
+    // Captura simples. Em produção, crie seu próprio template EmailJS para agências.
+    const data = {
+      nomeAgencia: document.getElementById('nomeAgencia').value.trim(),
+      emailAgencia: document.getElementById('emailAgencia').value.trim(),
+      telefoneAgencia: document.getElementById('telefoneAgencia').value.trim(),
+      numClientes: document.getElementById('numClientes').value.trim(),
+      especialidadeAgencia: document.getElementById('especialidadeAgencia').value.trim(),
+      servicosAgencia: document.getElementById('servicosAgencia').value.trim()
     };
-    
-    mostrarTermosAcordo();
+    // Aqui você pode enviar para um template separado ou apenas mostrar um alerta
+    alert('✅ Agência cadastrada com sucesso!');
+    formAgencia.reset();
+  });
 }
 
-function mostrarTermosAcordo() {
-    const modal = document.createElement('div');
-    modal.className = 'modal-acordo';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <h3>📋 Acordo de Serviço</h3>
-            <div class="termos-acordo">
-                <p><strong>Valor:</strong> R$ ${acordoAtual.valor.toFixed(2)}</p>
-                <p><strong>Status:</strong> Aguardando confirmação</p>
-                <hr>
-                <label class="checkbox-acordo">
-                    <input type="checkbox" id="aceiteEmpresa">
-                    <span>Concordo que a empresa pagará o valor antecipadamente e o influencer entregará o serviço conforme combinado. A plataforma cobrará 20% de taxa.</span>
-                </label>
-                <label class="checkbox-acordo">
-                    <input type="checkbox" id="aceiteInfluencer">
-                    <span>Confirmo que realizarei o serviço conforme acordado após o pagamento ser liberado pela plataforma.</span>
-                </label>
-            </div>
-            <button onclick="confirmarAcordo()">Confirmar Acordo</button>
-            <button onclick="fecharModal()">Cancelar</button>
-        </div>
-    `;
-    document.body.appendChild(modal);
+// ======== FUNÇÃO DE SCORE DE RELEVÂNCIA ========
+function calcularScore(seguidores, nicho) {
+  let score = 0;
+  // Baseado em seguidores (0-40 pontos)
+  if (seguidores < 10000) score += 10;
+  else if (seguidores < 50000) score += 20;
+  else if (seguidores < 100000) score += 30;
+  else score += 40;
+  // Nichos valorizados (0-30 pontos)
+  const nichosAltos = ['moda','beleza','fitness','tech','tecnologia','saude','gastronomia','comida'];
+  if (nichosAltos.some(n => nicho.toLowerCase().includes(n))) {
+    score += 30;
+  } else {
+    score += 20;
+  }
+  // Pontos aleatórios de crescimento potencial (0-30)
+  score += Math.floor(Math.random() * 30) + 1;
+  return Math.min(score, 100);
 }
 
-function confirmarAcordo() {
-    const aceiteEmpresa = document.getElementById('aceiteEmpresa')?.checked;
-    const aceiteInfluencer = document.getElementById('aceiteInfluencer')?.checked;
-    
-    if (!aceiteEmpresa || !aceiteInfluencer) {
-        alert('❌ Ambas as partes precisam aceitar o acordo!');
-        return;
-    }
-    
-    acordoAtual.aceiteEmpresa = true;
-    acordoAtual.aceiteInfluencer = true;
-    acordoAtual.status = 'confirmado';
-    
-    alert('✅ Acordo confirmado! Prosseguindo para pagamento...');
-    fecharModal();
-    iniciarPagamento(acordoAtual.valor);
+// ======== CÁLCULO DE ORÇAMENTO INTELIGENTE ========
+function calcularOrcamento() {
+  const seguidores = Number(document.getElementById('calcSeguidores').value || 0);
+  const nicho      = document.getElementById('calcNicho').value;
+  const formato    = document.getElementById('calcFormato').value;
+  const objetivo   = document.getElementById('calcObjetivo').value;
+  if (!seguidores || !nicho || !formato || !objetivo) {
+    alert('Por favor, preencha todos os campos da calculadora.');
+    return;
+  }
+  // Base: 2% do número de seguidores (ex: 50k => R$1000)
+  let base = seguidores * 0.02;
+  // Multiplicadores por nicho
+  const nicheMult = {
+    saude: 1.25,
+    financas: 1.35,
+    tech: 1.20,
+    moda: 1.10,
+    viagem: 1.10,
+    fitness: 1.10,
+    comida: 1.00,
+    lifestyle: 1.00
+  };
+  // Multiplicadores por formato
+  const formatMult = {
+    stories: 1.0,
+    stories3: 2.5,
+    stories7: 4.0,
+    feed: 1.5,
+    feed3: 3.5,
+    reels: 2.0,
+    reels3: 4.0,
+    combo: 5.0
+  };
+  // Multiplicadores por objetivo
+  const objectiveMult = {
+    branding: 1.0,
+    vendas: 1.20,
+    trafego: 1.10,
+    engajamento: 0.90
+  };
+  const total = base * (nicheMult[nicho] || 1) * (formatMult[formato] || 1) * (objectiveMult[objetivo] || 1);
+  const valorMin = total * 0.85;
+  const valorMid = total;
+  const valorPre = total * 1.25;
+  // Atualiza a interface
+  document.getElementById('precoMinimo').textContent = `R$ ${valorMin.toFixed(0)}`;
+  document.getElementById('precoMedio').textContent = `R$ ${valorMid.toFixed(0)}`;
+  document.getElementById('precoPremium').textContent = `R$ ${valorPre.toFixed(0)}`;
+  document.getElementById('resultadoOrcamento').style.display = 'block';
 }
 
-function fecharModal() {
-    document.querySelector('.modal-acordo')?.remove();
-}
-
-// ========== INTEGRAÇÃO MERCADO PAGO ==========
-function iniciarPagamento(valor) {
-    // Aqui você integraria com o SDK do Mercado Pago
-    alert(`💳 Iniciando pagamento de R$ ${valor.toFixed(2)}\n\nEm produção, isso abrirá o checkout do Mercado Pago.\n\nChave configurada: APP_USR-60cc757b-23ee-4a39ea-a3-541ded1f80a1a`);
-    
-    // Simulação de sucesso
-    setTimeout(() => {
-        alert('✅ Pagamento realizado com sucesso!\nO valor foi retido pela plataforma e será liberado após a entrega do serviço.');
-    }, 2000);
-}
-
-// ========== BUSCA E MATCHING ==========
-function buscarInfluencers() {
-    const nicho = document.getElementById('buscaNicho')?.value;
-    const orcamento = document.getElementById('buscaOrcamento')?.value;
-    
-    // Simulação de busca (em produção, buscaria no banco de dados)
-    const resultados = [
-        { nome: 'Maria Silva', nicho: 'Moda', seguidores: '50k', score: 85 },
-        { nome: 'João Santos', nicho: 'Fitness', seguidores: '120k', score: 92 },
-        { nome: 'Ana Costa', nicho: 'Beleza', seguidores: '80k', score: 88 }
-    ];
-    
-    exibirResultados(resultados);
-}
-
-function exibirResultados(resultados) {
-    const container = document.getElementById('resultadosBusca');
-    container.innerHTML = resultados.map(inf => `
-        <div class="card-influencer">
-            <h4>${inf.nome}</h4>
-            <p>Nicho: ${inf.nicho}</p>
-            <p>Seguidores: ${inf.seguidores}</p>
-            <p>Score: ⭐ ${inf.score}/100</p>
-            <button onclick="criarAcordo(1, ${inf.score}, 5000)">Contratar</button>
-        </div>
-    `).join('');
-}
-
-// ========== ESTILOS DINÂMICOS ==========
-const style = document.createElement('style');
-style.innerHTML = `
-    .modal-acordo {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,0.8);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-    }
-    .modal-content {
-        background: white;
-        padding: 30px;
-        border-radius: 15px;
-        max-width: 500px;
-        width: 90%;
-    }
-    .termos-acordo {
-        margin: 20px 0;
-        padding: 15px;
-        background: #f5f5f5;
-        border-radius: 10px;
-    }
-    .checkbox-acordo {
-        display: flex;
-        align-items: flex-start;
-        margin: 15px 0;
-        cursor: pointer;
-    }
-    .checkbox-acordo input {
-        margin-right: 10px;
-        margin-top: 3px;
-    }
-    .checkbox-acordo span {
-        font-size: 14px;
-        line-height: 1.5;
-    }
-    .orcamento-resultado {
-        background: linear-gradient(135deg, #6a11cb, #ff7a18);
-        color: white;
-        padding: 25px;
-        border-radius: 15px;
-        margin-top: 20px;
-    }
-    .orcamento-resultado button {
-        background: white;
-        color: #6a11cb;
-        border: none;
-        padding: 12px 25px;
-        border-radius: 25px;
-        cursor: pointer;
-        font-weight: bold;
-        margin-top: 15px;
-    }
-    .card-influencer {
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        margin: 10px 0;
-    }
-`;
-document.head.appendChild(style);
-
-console.log('✅ InfluencyHub carregado com sucesso!');
-console.log('📧 EmailJS:', EMAILJS_SERVICE_ID);
+// Mensagens de debug no console
+console.log('📧 EmailJS configurado:', EMAILJS_SERVICE_ID);
 console.log('💳 Mercado Pago configurado');
