@@ -6,22 +6,23 @@
     <title>InfluencyHub - Conectando Marcas e Influenciadores</title>
     <meta name="description" content="Plataforma de intermediação entre empresas e influenciadores digitais com sistema de orçamento inteligente, score de relevância e pagamento seguro.">
     <meta name="keywords" content="influenciadores, marketing digital, campanhas, intermediação, empresas, influencer marketing">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://influencyhub.netlify.app/">
     <meta property="og:title" content="InfluencyHub - Conectando Marcas e Influenciadores">
     <meta property="og:description" content="Plataforma de intermediação entre empresas e influenciadores digitais.">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://influencyhub.netlify.app/">
     <meta property="twitter:title" content="InfluencyHub - Conectando Marcas e Influenciadores">
     <meta property="twitter:description" content="Plataforma de intermediação entre empresas e influenciadores digitais.">
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%238b5cf6'/%3E%3Cstop offset='100%25' style='stop-color:%23f97316'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ctext x='50' y='70' font-size='70' font-weight='bold' text-anchor='middle' fill='url(%23g)'%3EI%3C/text%3E%3C/svg%3E">
-    
+
+    <!-- CSS principal -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,7 +30,8 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+                <!-- Ajuste: aumentamos a largura do SVG para evitar corte de texto -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60">
                     <defs>
                         <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#8b5cf6"/>
@@ -54,6 +56,7 @@
             <h1 class="hero-title">Conecte sua marca aos influenciadores certos</h1>
             <p class="hero-subtitle">Encontre criadores de conteúdo ideais para campanhas de alto impacto com sistema de orçamento inteligente e pagamento seguro.</p>
             <div class="cta-buttons">
+                <!-- Ajuste: os botões chamam a função com tipo correspondente -->
                 <button onclick="mostrarSecao('empresa')" class="btn btn-primary">Sou Empresa</button>
                 <button onclick="mostrarSecao('influenciador')" class="btn btn-secondary">Sou Influenciador</button>
                 <button onclick="mostrarSecao('agencia')" class="btn btn-tertiary">Sou Agência</button>
@@ -143,13 +146,13 @@
             <div id="form-empresa" class="form-container" style="display:none;">
                 <h3>Cadastro de Empresa</h3>
                 <form id="formEmpresa" class="form">
-                    <input type="text" name="nomeEmpresa" placeholder="Nome da Empresa" required>
-                    <input type="email" name="emailEmpresa" placeholder="Email corporativo" required>
-                    <input type="tel" name="telefoneEmpresa" placeholder="Telefone" required>
-                    <input type="text" name="segmentoEmpresa" placeholder="Segmento/Nicho" required>
-                    <input type="url" name="siteEmpresa" placeholder="Website (opcional)">
-                    <textarea name="objetivosEmpresa" placeholder="Objetivos de marketing" rows="3" required></textarea>
-                    <input type="number" name="orcamentoMensal" placeholder="Orçamento mensal (R$)" min="0" step="100">
+                    <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Nome da Empresa" required>
+                    <input type="email" id="emailEmpresa" name="emailEmpresa" placeholder="Email corporativo" required>
+                    <input type="tel" id="telefoneEmpresa" name="telefoneEmpresa" placeholder="Telefone" required>
+                    <input type="text" id="segmentoEmpresa" name="segmentoEmpresa" placeholder="Segmento/Nicho" required>
+                    <input type="url" id="siteEmpresa" name="siteEmpresa" placeholder="Website (opcional)">
+                    <textarea id="objetivosEmpresa" name="objetivosEmpresa" placeholder="Objetivos de marketing" rows="3" required></textarea>
+                    <input type="number" id="orcamentoMensal" name="orcamentoMensal" placeholder="Orçamento mensal (R$)" min="0" step="100">
                     <button type="submit" class="btn btn-primary">Cadastrar Empresa</button>
                 </form>
             </div>
@@ -158,14 +161,14 @@
             <div id="form-influenciador" class="form-container" style="display:none;">
                 <h3>Cadastro de Influenciador</h3>
                 <form id="formInfluenciador" class="form">
-                    <input type="text" name="nomeInfluencer" placeholder="Nome completo" required>
-                    <input type="email" name="emailInfluencer" placeholder="Email" required>
-                    <input type="tel" name="telefoneInfluencer" placeholder="Telefone" required>
-                    <input type="url" name="instagramInfluencer" placeholder="Instagram (@seuusuario)" required>
-                    <input type="number" name="seguidores" placeholder="Número de seguidores" min="1000" required>
-                    <input type="text" name="nichoInfluencer" placeholder="Nicho principal (ex: Moda, Tech, Saúde)" required>
-                    <input type="number" name="frequenciaPostagem" placeholder="Posts por semana" min="1" max="50" required>
-                    <select name="formatoPreferido" required>
+                    <input type="text" id="nomeInfluencer" name="nomeInfluencer" placeholder="Nome completo" required>
+                    <input type="email" id="emailInfluencer" name="emailInfluencer" placeholder="Email" required>
+                    <input type="tel" id="telefoneInfluencer" name="telefoneInfluencer" placeholder="Telefone" required>
+                    <input type="url" id="instagramInfluencer" name="instagramInfluencer" placeholder="Instagram (@seuusuario)" required>
+                    <input type="number" id="seguidoresInfluencer" name="seguidores" placeholder="Número de seguidores" min="1000" required>
+                    <input type="text" id="nichoInfluencer" name="nichoInfluencer" placeholder="Nicho principal (ex: Moda, Tech, Saúde)" required>
+                    <input type="number" id="frequenciaPostagem" name="frequenciaPostagem" placeholder="Posts por semana" min="1" max="50" required>
+                    <select id="formatoPreferido" name="formatoPreferido" required>
                         <option value="">Formato preferido</option>
                         <option value="feed">Post Feed</option>
                         <option value="stories">Stories</option>
@@ -180,12 +183,12 @@
             <div id="form-agencia" class="form-container" style="display:none;">
                 <h3>Cadastro de Agência</h3>
                 <form id="formAgencia" class="form">
-                    <input type="text" name="nomeAgencia" placeholder="Nome da Agência" required>
-                    <input type="email" name="emailAgencia" placeholder="Email corporativo" required>
-                    <input type="tel" name="telefoneAgencia" placeholder="Telefone" required>
-                    <input type="number" name="numClientes" placeholder="Número de clientes ativos" min="1">
-                    <input type="text" name="especialidadeAgencia" placeholder="Especialidade" required>
-                    <textarea name="servicosAgencia" placeholder="Serviços oferecidos" rows="3" required></textarea>
+                    <input type="text" id="nomeAgencia" name="nomeAgencia" placeholder="Nome da Agência" required>
+                    <input type="email" id="emailAgencia" name="emailAgencia" placeholder="Email corporativo" required>
+                    <input type="tel" id="telefoneAgencia" name="telefoneAgencia" placeholder="Telefone" required>
+                    <input type="number" id="numClientes" name="numClientes" placeholder="Número de clientes ativos" min="1">
+                    <input type="text" id="especialidadeAgencia" name="especialidadeAgencia" placeholder="Especialidade" required>
+                    <textarea id="servicosAgencia" name="servicosAgencia" placeholder="Serviços oferecidos" rows="3" required></textarea>
                     <button type="submit" class="btn btn-primary">Cadastrar Agência</button>
                 </form>
             </div>
@@ -288,7 +291,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 InfluencyHub. Todos os direitos reservados.</p>
+                <p>&copy; 2026 InfluencyHub. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -303,7 +306,7 @@
     </script>
     <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
-        // Configurar Mercado Pago
+        // Configurar Mercado Pago (mesmo em modo de teste)
         const mp = new MercadoPago('TEST-e338611bb-162b-4285-9e05-5aa3ce92a0ca', {
             locale: 'pt-BR'
         });
