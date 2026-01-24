@@ -571,7 +571,7 @@ body {
     }
 }
 
-/* ========== ANIMATIONS ========== */
+/* ========== ANIMAÇÕES ========== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -602,4 +602,11 @@ body {
 
 .mb-20 {
     margin-bottom: 20px;
+}
+
+/* ========== PATCHES ESPECÍFICOS ========== */
+/* Ajuste para o logotipo: aumenta a largura do SVG para evitar corte de texto */
+.logo svg {
+    width: 240px !important;
+    height: auto;
 }
